@@ -34,6 +34,7 @@
         exclusive 仅创建者可以使用的私有队列，断开后自动删除
         auto-delete 当所有消费端连接断开后，是否自动删除队列 -->
     <rabbit:queue id="test_queue" name="#{appConfig['mq.queue']}_testQueue" durable="true" auto-delete="false" exclusive="false" />
+    <rabbit:queue id="liudhQueue" name="liudhQueue" durable="true" auto-delete="false" exclusive="false" />
 
     <bean name="rabbitmqService" class="com.enh.mq.service.RabbitmqService"></bean>
     <!-- 配置监听 消费者 -->
@@ -42,5 +43,6 @@
             queues 监听队列，多个用逗号分隔
             ref 监听器 -->
         <rabbit:listener queues="test_queue" ref="rabbitmqService"/>
+        <rabbit:listener queues="liudhQueue" ref="rabbitmqService"/>
     </rabbit:listener-container>
 </beans>
